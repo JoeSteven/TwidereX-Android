@@ -34,5 +34,12 @@ interface SearchService {
         query: String,
         page: Int? = null,
         count: Int = 20,
+        following: Boolean = false
     ): List<IUser>
+
+    suspend fun searchMedia(
+        query: String,
+        count: Int = 20,
+        nextPage: String? = null,
+    ): ISearchResponse
 }

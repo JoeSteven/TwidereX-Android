@@ -1,6 +1,11 @@
 # Twidere X
-![Build Status](https://github.com/TwidereProject/TwidereX-Android/workflows/Android%20CI/badge.svg)
+[![Build Status](https://github.com/TwidereProject/TwidereX-Android/workflows/Android%20CI/badge.svg)](https://github.com/TwidereProject/TwidereX-Android/actions)
 [![Crowdin](https://badges.crowdin.net/twidere-x/localized.svg)](https://crowdin.com/project/twidere-x)
+[![Version](https://img.shields.io/github/v/release/TwidereProject/TwidereX-Android)](https://github.com/TwidereProject/TwidereX-Android/releases/latest)
+[![Issues](https://img.shields.io/github/issues/TwidereProject/TwidereX-Android)](https://github.com/TwidereProject/TwidereX-Android/issues)
+[![License](https://img.shields.io/github/license/TwidereProject/TwidereX-Android)](https://github.com/TwidereProject/TwidereX-Android/blob/develop/LICENSE)
+![Activity](https://img.shields.io/github/commit-activity/m/TwidereProject/TwidereX-Android)
+[![Contributors](https://img.shields.io/github/contributors/TwidereProject/TwidereX-Android)](https://github.com/TwidereProject/TwidereX-Android/graphs/contributors)
 
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=com.twidere.twiderex)
 [<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/en/packages/com.twidere.twiderex/)
@@ -17,17 +22,35 @@ Next generation of Twidere for Android 5.0+. **Still in early stage.**
 
 
 ## What's Happening
-### 1.0.3 - January 2021 Update
- - You can now search and @ user while composing new tweet  
- - New design for login with custom API key support  
- - Stability improve  
 
-### What is being planned for 1.1 - January 2021
+### What's new in 1.5.0 - Aug 2021 Update
 
-For 1.1, we are proactively working on:
-- **Mastodon Support!**
-- Stability
-- UI/UX tweaking
+- Proxy support, you can set a proxy for all the network request in settings.
+- Tabs column editing support, you can now modify the order and count of the home tab.
+- "Tweet sent" notification will be dismissed after showing once.
+- Screen will keep on when playing media in media scene.
+- Better RTL support for tweets.
+- Fix certain crashes when requesting network.
+- [Mastodon] Add support for gif avatar support and custom emoji in user name.
+- [Mastodon] Add federated timeline and local timeline
+
+### What is being planned for 1.6.0 - Aug 2021 Update
+For 1.6.0, we're planning to build an experimatal desktop version, this is a big step, you can check out our [milestore](https://github.com/TwidereProject/TwidereX-Android/milestone/4) for detail. Here is a shortlist:
+
+- Experimatal desktop version.
+- Mute and block support.
+- Optimizing video play for timeline.
+- Bug fixes.
+- UI/UX tweaking.
+- Stability.
+
+### Roadmap for 2.0 - Jun 2021 Update
+For 2.0, we're considering these options, but it is still an early thought and might change over time.
+
+- Desktop (Linux/Windows) support (by [compose-jb](https://github.com/JetBrains/compose-jb)).
+- Tablet mode.
+- Javascript extension support.
+- View-Only mode (aka Anonymous Browse).
 
 ## Contributing
 
