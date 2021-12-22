@@ -20,18 +20,20 @@
  */
 package com.twidere.services.mastodon
 
+import com.twidere.services.http.HttpClientFactory
 import com.twidere.services.http.authorization.BearerAuthorization
 import com.twidere.services.http.authorization.EmptyAuthorization
-import com.twidere.services.http.retrofit
 import com.twidere.services.mastodon.api.MastodonOAuthResources
 import com.twidere.services.mastodon.model.CreateApplicationResponse
 import com.twidere.services.mastodon.model.MastodonAuthScope
+import java.net.URLEncoder
 
 class MastodonOAuthService(
     private val host: String,
     private val client_name: String,
     private val website: String? = null,
     private val redirect_uri: String = "urn:ietf:wg:oauth:2.0:oob",
+    private val httpClientFactory: HttpClientFactory,
     private val scopes: List<MastodonAuthScope> = listOf(
         MastodonAuthScope.read,
         MastodonAuthScope.write,
@@ -39,8 +41,9 @@ class MastodonOAuthService(
         MastodonAuthScope.push,
     ),
 ) {
-    private val resources by lazy {
-        retrofit<MastodonOAuthResources>(
+    private val resources: MastodonOAuthResources by lazy {
+        httpClientFactory.createResources(
+            MastodonOAuthResources::class.java,
             host,
             EmptyAuthorization()
         )
@@ -54,10 +57,14 @@ class MastodonOAuthService(
     )
 
     fun getWebOAuthUrl(response: CreateApplicationResponse) =
-        "$host/oauth/authorize?client_id=${response.clientID}&response_type=code&redirect_uri=${response.redirectURI}&scope=${
+        "$host/oauth/authorize?client_id=${response.clientID}&response_type=code&redirect_uri=${response.redirectURI.let {
+            URLEncoder.encode(it, "UTF-8")
+        }}&scope=${
         scopes.joinToString(
             " "
-        ) { it.name }
+        ) { it.name }.let {
+            URLEncoder.encode(it, "UTF-8")
+        }
         }"
 
     suspend fun getAccessToken(code: String, response: CreateApplicationResponse) =
@@ -71,7 +78,8 @@ class MastodonOAuthService(
         )
 
     suspend fun verifyCredentials(accessToken: String) =
-        retrofit<MastodonOAuthResources>(
+        httpClientFactory.createResources<MastodonOAuthResources>(
+            MastodonOAuthResources::class.java,
             host,
             BearerAuthorization(accessToken)
         ).verifyCredentials()
