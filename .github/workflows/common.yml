@@ -46,9 +46,7 @@ jobs:
         timeout-minutes: 40
         with:
           api-level: ${{ matrix.api-level }}
-          profile: Pixel 2
           target: ${{ matrix.target }}
-          ram-size: 2048M
           script:  |
             adb logcat > logcat.txt &
             ./gradlew :common:connectedCheck
